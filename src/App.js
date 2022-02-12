@@ -1,10 +1,11 @@
+
 import './App.css';
-import HappyCoding from './components/HappyCoding';
+import MainDashboard from './components/dashboard/MainDashboard';
 
 function App() {
   return (
     <div className="App">
-      <HappyCoding />
+      <MainDashboard />
     </div>
   );
 }
