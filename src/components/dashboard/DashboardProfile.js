@@ -7,7 +7,7 @@ import { BorderColor } from '@mui/icons-material';
 export default function DashboardProfile() {
     return (
         <>
-            <Card sx={{ maxWidth: 225, mt: 2 }}>
+            <Card sx={{width: 225, mt: 2 }}>
                 <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
                     <BorderColor sx={{fontSize: '15px', color: '#FF6F3F', p: 1, cursor: 'pointer'}} />
                 </Box>

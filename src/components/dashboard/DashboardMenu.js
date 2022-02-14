@@ -1,0 +1,66 @@
+import { Button, Card } from '@mui/material';
+import React from 'react';
+import '@fontsource/poppins';
+
+export default function DashboardMenu() {
+    return (
+        <>
+            <Card className='menu-card' sx={{ 
+                mt: 1, width: { md: 225, sm: 225, xs: 'max-content', }, 
+                display: 'flex', flexDirection: {md: 'column', sm: 'column', xs: 'row'}, 
+                overflowX: {md: 'none', sm: 'auto', xs: 'auto'},
+                alignItems: 'center' }}>
+                <Button variant="outlined" sx={{
+                    mt: { md: 3, sm: 3},                   
+                    color: '#FF6F3F',
+                    borderColor: '#FF6F3F',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Campus Visitors</Button>
+                <Button sx={{
+                    mt: { md: 1.5, sm: 1.5},
+                    color: '#051846',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Your Applications</Button>
+                <Button sx={{
+                    mt: { md: 1.5, sm: 1.5},
+                    color: '#051846',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Saved Visitors</Button>
+                <Button sx={{
+                    mt: { md: 1.5, sm: 1.5},
+                    color: '#051846',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Your Eligibility</Button>
+                <Button sx={{
+                    mt: { md: 1.5, sm: 1.5},
+                    color: '#051846',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Placement Results</Button>
+                <Button sx={{
+                    mt: { md: 1.5, sm: 1.5},
+                    mb: 4,
+                    color: '#051846',
+                    width: 180,
+                    textTransform: 'none',
+                    fontFamily: "Poppins",
+                    fontWeight: 900
+                }}>Forum</Button>
+            </Card>
+        </>
+    )
+}

@@ -1,17 +1,21 @@
 import React from 'react';
-import Header from '../Header';
-import ThemeHeader from '../ThemeHeader';
 import DashboardProfile from './DashboardProfile';
-import { Container } from '@mui/material';
+import DashboardMenu from './DashboardMenu'
+import { Grid } from '@mui/material';
+import CampusVisitors from './CampusVisitors';
 
 export default function MainDashboard() {
-    return(
+    return (
         <>
-            <Header />
-            <ThemeHeader />
-            <Container maxWidth="lg">
-                <DashboardProfile />
-            </Container>
+            <Grid container>
+                <Grid item lg={2.5} md={3} sm={3} xs={12}>
+                    <DashboardProfile />
+                    <DashboardMenu />
+                </Grid>
+                <Grid item lg={9.5} md={9} sm={9} xs={12}>
+                    <CampusVisitors />
+                </Grid>
+            </Grid>
         </>
     )
 }
