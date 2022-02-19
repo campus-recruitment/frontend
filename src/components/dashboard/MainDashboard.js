@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardProfile from './DashboardProfile';
 import DashboardMenu from './DashboardMenu'
 import { Grid } from '@mui/material';
 import CampusVisitors from './CampusVisitors';
+import Header from '../Header';
+import ThemeHeader from '../ThemeHeader';
 
 export default function MainDashboard() {
+
     return (
         <>
+            <Header />
+            <ThemeHeader />
             <Grid container>
                 <Grid item lg={2.5} md={3} sm={3} xs={12}>
                     <DashboardProfile />

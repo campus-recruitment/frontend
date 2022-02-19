@@ -2,16 +2,29 @@
 import './App.css';
 import MainDashboard from './components/dashboard/MainDashboard';
 import { Container } from '@mui/material';
-import Header from './components/Header';
-import ThemeHeader from './components/ThemeHeader';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <ThemeHeader />
       <Container maxWidth="lg">
-        <MainDashboard />
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/register" element={<Register />} />
+          </Routes>
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+          </Routes>
+          <Routes>
+            <Route exact path="/dashboard" element={<MainDashboard />} />
+          </Routes>
+        </BrowserRouter>
       </Container>
     </div>
   );

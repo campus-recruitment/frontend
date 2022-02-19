@@ -5,6 +5,7 @@ import avatar from '../../assets/avatar.jpg';
 import { BorderColor } from '@mui/icons-material';
 
 export default function DashboardProfile() {
+    
     return (
         <>
             <Card sx={{width: 225, mt: 2 }}>
