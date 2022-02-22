@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Paper, Box, Button, Typography } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom'
-
+import { UserContext } from '../contexts/userContext'
 
 export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { setUser } = useContext(UserContext)
 
     const handleLogin = () => {
         fetch("http://localhost:5000/login", {
@@ -22,9 +24,10 @@ export default function Login() {
             .then(res => res.json())
             .then(data => {
                 if(data.success) {
-                    localStorage.setItem("token", data.result.token)
+                    setUser(data.result)
+                    // localStorage.setItem("token", data.result.token)
                     navigate('/dashboard')
-                    console.log(data.result.token)
+                    console.log(data.result)
                 } else {
                     prompt(data.message)
                 }

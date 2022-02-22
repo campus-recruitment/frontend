@@ -1,36 +1,57 @@
-import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Avatar, Box } from '@mui/material';
+import React, { useEffect, useContext, useState } from 'react';
+import { Card, CardContent, CardMedia, Typography, Avatar, Box, Tooltip, useRadioGroup } from '@mui/material';
 import '@fontsource/poppins';
-import avatar from '../../assets/avatar.jpg';
 import { BorderColor } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../contexts/userContext';
 
 export default function DashboardProfile() {
-    
+    const { user } = useContext(UserContext)
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [picture, setPicture] = useState("");
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/student/${user.user_id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + user.token
+            }
+        }).then(res => res.json())
+        .then(data => {
+            setFullName(data.student.fullName)
+            setEmail(data.student.email)
+            setPicture(data.student.picture) 
+        })
+    }, [])
+
     return (
         <>
-            <Card sx={{width: 225, mt: 2 }}>
-                <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <BorderColor sx={{fontSize: '15px', color: '#FF6F3F', p: 1, cursor: 'pointer'}} />
+            <Card sx={{ width: 225, mt: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Tooltip title="Edit Profile" placement="right">
+                        <Link to="/edit-profile"><BorderColor sx={{ fontSize: '15px', color: '#FF6F3F', p: 1, cursor: 'pointer' }} /></Link>
+                    </Tooltip>
                 </Box>
 
-                <CardMedia sx={{display: 'flex', justifyContent: 'center'}}>
-                    <Avatar alt="Remy Sharp" src={avatar} />
+                <CardMedia sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Avatar alt="Remy Sharp" src={picture} />
                 </CardMedia>
-                <CardContent sx={{textAlign: 'center'}} >
+                <CardContent sx={{ textAlign: 'center' }} >
                     <Typography gutterBottom component="div" sx={{
                         fontFamily: "Poppins",
                         fontSize: '14px',
                         color: '#051846',
                         fontWeight: 900
                     }}>
-                        John Doe
+                        {fullName}
                     </Typography>
                     <Typography sx={{
                         fontFamily: "Poppins",
                         fontSize: '12px',
                         color: '#051846'
                     }}>
-                        johndoe123@gmail.com
+                        {email}
                     </Typography>
                 </CardContent>
             </Card>

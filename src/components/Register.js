@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Paper, Box, Button, Typography } from '@mui/material';
 import { store } from 'react-notifications-component';
 // import { useHistory } from "react-router-dom";
 import { useNavigate, Link } from 'react-router-dom'
+import { UserContext } from '../contexts/userContext'
 
 export default function Register() {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const { setUser } = useContext(UserContext)
 
     // const notifyPopup = () => {
     //     store.addNotification({
@@ -28,22 +30,22 @@ export default function Register() {
     //     });
     //   };
 
-    const  handleRegister = () => {
-            if(password === confirmPassword) {
-                fetch("http://localhost:5000/register", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        fullName,
-                        email,
-                        password
-                    })
+    const handleRegister = () => {
+        if (password === confirmPassword) {
+            fetch("http://localhost:5000/register", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fullName,
+                    email,
+                    password
                 })
+            })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.success){
+                    if (data.success) {
                         fetch("http://localhost:5000/login", {
                             method: 'POST',
                             headers: {
@@ -54,25 +56,26 @@ export default function Register() {
                                 password
                             })
                         })
-                        .then(res => res.json())
-                        .then(data => {
-                            // notifyPopup();
-                            if(Object.keys(data).find(ele => ele.result == "token")) {
-                                localStorage.setItem("token", data.result.token)
-                            }
-                            navigate('/dashboard')
-                            console.log(data.result.token)
-                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                // notifyPopup();
+                                // if(Object.keys(data).find(ele => ele.result == "token")) {
+                                //     localStorage.setItem("token", data.result.token)
+                                // }
+                                setUser(data.result)
+                                navigate('/dashboard')
+                                console.log(data.result.token)
+                            })
                     }
                     else prompt(data.message)
                 })
-            }
+        }
     }
 
     return (
         <>
-            <Paper variant="outlined" sx={{width: 350}} >
-                <Box sx={{display: 'flex', flexDirection: 'column', p: 4}}>
+            <Paper variant="outlined" sx={{ width: 350 }} >
+                <Box sx={{ display: 'flex', flexDirection: 'column', p: 4 }}>
                     <TextField sx={{
                         mb: 2
                     }} onChange={(e) => setFullName(e.target.value)} id="outlined-basic" label="Your Full Name" variant="outlined" required size="small" />
@@ -86,7 +89,7 @@ export default function Register() {
                         mb: 2
                     }} onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" type="password" label="Confirm Password" variant="outlined" required size="small" />
                     <Button variant="contained" onClick={handleRegister}>Register</Button>
-                    <Typography sx={{textAlign: 'right', mt: 2}} variant="caption">Already have an account? <Link to="/">Login here.</Link></Typography>
+                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Already have an account? <Link to="/">Login here.</Link></Typography>
                 </Box>
             </Paper>
         </>
