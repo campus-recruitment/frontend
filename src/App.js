@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Register from './components/Register';
 import Login from './components/Login';
-import EditProfile from './components/EditProfile';
+import EditProfile from './components/profile/EditProfile';
 import Header from './components/Header';
 import ThemeHeader from './components/ThemeHeader';
 import { UserContext } from './contexts/userContext'
