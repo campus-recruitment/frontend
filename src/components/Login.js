@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { TextField, Paper, Box, Button, Typography } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom'
 import { UserContext } from '../contexts/userContext'
+import Cookies from 'js-cookie';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -26,12 +27,13 @@ export default function Login() {
                 if(data.success) {
                     setUser(data.result)
                     // localStorage.setItem("token", data.result.token)
-                    navigate('/dashboard')
-                    console.log(data.result)
+                    const inTwoHours = new Date(new Date().getTime() + 2 * 60 * 60 * 1000);
+                    Cookies.set("token", JSON.stringify(data.result), { expires: inTwoHours })
+                    navigate('/switch')
+                    console.log(data.result) 
                 } else {
                     prompt(data.message)
                 }
-
             })
     }
 
@@ -48,7 +50,7 @@ export default function Login() {
                     }} onChange={(e) => setPassword(e.target.value)} id="outlined-basic" type="password" label="Password" variant="outlined" required size="small" />
 
                     <Button variant="contained" onClick={handleLogin}>Login</Button>
-                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Don't have an account? <Link to="/">Register here.</Link></Typography>
+                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Don't have an account? <Link to="/register">Register here.</Link></Typography>
                 </Box>
             </Paper>
         </>

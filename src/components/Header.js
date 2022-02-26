@@ -1,4 +1,5 @@
 import { Avatar, Toolbar, AppBar, Box, Button } from '@mui/material';
+import Cookies from 'js-cookie';
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo/full-logo.jpg'
@@ -10,6 +11,7 @@ export default function Header() {
 
     const logout = () => {
         setUser({})
+        Cookies.remove("token")
         navigate("/login")
     }
     

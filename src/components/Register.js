@@ -4,6 +4,7 @@ import { store } from 'react-notifications-component';
 // import { useHistory } from "react-router-dom";
 import { useNavigate, Link } from 'react-router-dom'
 import { UserContext } from '../contexts/userContext'
+import Cookies from 'js-cookie';
 
 export default function Register() {
     const navigate = useNavigate();
@@ -32,6 +33,7 @@ export default function Register() {
 
     const handleRegister = () => {
         if (password === confirmPassword) {
+            console.log('hello')
             fetch("http://localhost:5000/register", {
                 method: 'POST',
                 headers: {
@@ -62,9 +64,12 @@ export default function Register() {
                                 // if(Object.keys(data).find(ele => ele.result == "token")) {
                                 //     localStorage.setItem("token", data.result.token)
                                 // }
+                                console.log('hello...')
                                 setUser(data.result)
-                                navigate('/dashboard')
-                                console.log(data.result.token)
+                                navigate('/switch')
+                                console.log(data.result)
+                                const inTwoHours = new Date(new Date().getTime() + 2 * 60 * 60 * 1000);
+                                Cookies.set("token", JSON.stringify(data.result), { expires: inTwoHours })
                             })
                     }
                     else prompt(data.message)
@@ -89,7 +94,7 @@ export default function Register() {
                         mb: 2
                     }} onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" type="password" label="Confirm Password" variant="outlined" required size="small" />
                     <Button variant="contained" onClick={handleRegister}>Register</Button>
-                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Already have an account? <Link to="/">Login here.</Link></Typography>
+                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Already have an account? <Link to="/login">Login here.</Link></Typography>
                 </Box>
             </Paper>
         </>

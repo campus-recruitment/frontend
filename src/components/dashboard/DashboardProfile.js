@@ -12,6 +12,7 @@ export default function DashboardProfile() {
     const [picture, setPicture] = useState("");
 
     useEffect(() => {
+        console.log(user.token)
         fetch(`http://localhost:5000/api/student/${user.user_id}`, {
             method: 'GET',
             headers: {

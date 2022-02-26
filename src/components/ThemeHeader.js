@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Grid } from '@mui/material';
 import { LightMode } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import "@fontsource/poppins"
 
 export default function ThemeHeader() {
@@ -12,6 +13,7 @@ export default function ThemeHeader() {
                     <LightMode sx={{ color: 'white', mr: 4 }} />
                 </Grid>
                 <Grid item>
+                    <Link to="/dashboard">
                     <Button onMouseOver={(e) => {
                         e.target.style.color = '#FF6F3F'
                         e.target.style.borderColor = '#FF6F3F'
@@ -21,11 +23,11 @@ export default function ThemeHeader() {
                     }} variant="outlined"
                         sx={{
                             color: 'white',
-                            borderColor: 'white',
+                            borderColor: 'white', 
                             mr: 4,
                             textTransform: 'none',
                             fontFamily: "Poppins"
-                        }}>Dashboard</Button>
+                        }}>Dashboard</Button></Link>
                 </Grid>
             </Grid>
         </>

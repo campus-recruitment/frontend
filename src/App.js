@@ -14,6 +14,11 @@ import Header from './components/Header';
 import ThemeHeader from './components/ThemeHeader';
 import { UserContext } from './contexts/userContext'
 import { useState } from 'react';
+import Cookies from 'js-cookie';
+import Switching from './components/Switching';
+import AdminDashboard from './components/admin/AdminDashboard';
+import AdminRoute from './privateRouting/AdminRoute';
+import StudentRoute from './privateRouting/StudentRoute';
 
 function App() {
 
@@ -26,8 +31,12 @@ function App() {
     })
   }
 
+  let token = Cookies.get("token")
+  if (token) {
+    token = JSON.parse(token)
+  }
   const [userState, setUserState] = useState({
-    user: {},
+    user: token ? { token: token.token, ...token.user } : {},
     setUser: setUser
   })
 
@@ -39,16 +48,24 @@ function App() {
           <ThemeHeader />
           <Container maxWidth="lg">
             <Routes>
-              <Route exact path="/register" element={<Register />} />
-            </Routes>
-            <Routes>
+              <Route exact path="/" element={<Register />} />
+              <Route exact path="/switch" element={<Switching />} />
               <Route exact path="/login" element={<Login />} />
-            </Routes>
-            <Routes>
-              <Route exact path="/dashboard" element={<MainDashboard />} />
-            </Routes>
-            <Routes>
-              <Route exact path="/edit-profile" element={<EditProfile />} />
+              <Route exact path="/dashboard" element={
+                <StudentRoute>
+                  <MainDashboard />
+                </StudentRoute>
+              } />
+              <Route exact path="/edit-profile" element={
+                <StudentRoute>
+                  <EditProfile />
+                </StudentRoute>
+              } />
+              <Route exact path="/admin-dashboard" element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              } />
             </Routes>
           </Container>
         </BrowserRouter>
