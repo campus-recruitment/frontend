@@ -2,11 +2,13 @@ import { Button, Card, CardContent, Typography, CardActions, Box } from '@mui/ma
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../contexts/userContext';
+import Header from './Header';
 
 export default function Switching() {
     const { user } = useContext(UserContext)
     return (
         <>
+        <Header />
             <Box sx={{ maxWidth: 475, textAlign: 'center' }}>
                 <Card variant="outlined" sx={{ p: 1 }}>
                     <CardContent>

@@ -44,9 +44,8 @@ function App() {
     <div className="App">
       <UserContext.Provider value={userState}>
         <BrowserRouter>
-          <Header />
-          <ThemeHeader />
-          <Container maxWidth="lg">
+          {/* <Header />
+          <ThemeHeader /> */}
             <Routes>
               <Route exact path="/" element={<Register />} />
               <Route exact path="/switch" element={<Switching />} />
@@ -67,7 +66,6 @@ function App() {
                 </AdminRoute>
               } />
             </Routes>
-          </Container>
         </BrowserRouter>
       </UserContext.Provider>
     </div>

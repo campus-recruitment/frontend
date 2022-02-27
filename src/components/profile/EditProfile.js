@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Box, Grid, Typography, Divider, TextField, Button } from '@mui/material';
 import { UserContext } from '../../contexts/userContext';
 import PersonalDetails from './PersonalDetails';
+import Header from '../Header';
+import ThemeHeader from '../ThemeHeader';
 
 export default function EditProfile() {
     const { user } = useContext(UserContext)
@@ -60,7 +62,9 @@ export default function EditProfile() {
 
     return (
         <>
-            <Box sx={{ mt: 2, height: '100%', border: '2px solid #c8c7c7', borderRadius: '6px' }}>
+        <Header />
+        <ThemeHeader />
+            <Box sx={{ m: 4, height: '100%', border: '2px solid #c8c7c7', borderRadius: '6px' }}>
                 <Grid container sx={{ p: 2 }} flexDirection="column">
                     <Grid item lg={12} md={12} sm={12} xs={12}>
                         <Typography variant="h6" gutterBottom component="div" sx={{
