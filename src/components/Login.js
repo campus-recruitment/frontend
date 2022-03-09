@@ -43,14 +43,22 @@ export default function Login() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 4 }}>
 
                     <TextField sx={{
-                        mb: 2
+                        mb: 2,
+                        fontFamily: "Poppins"
                     }} onChange={(e) => setEmail(e.target.value)} id="outlined-basic" label="Your Email" variant="outlined" required size="small" />
                     <TextField sx={{
-                        mb: 2
+                        mb: 2,
+                        fontFamily: "Poppins"
                     }} onChange={(e) => setPassword(e.target.value)} id="outlined-basic" type="password" label="Password" variant="outlined" required size="small" />
 
-                    <Button variant="contained" onClick={handleLogin}>Login</Button>
-                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Don't have an account? <Link to="/register">Register here.</Link></Typography>
+                    <Button variant="contained"    onMouseOver={(e) => e.target.style.backgroundColor = '#041846'}
+                                    sx={{
+                                        color: 'white',
+                                        backgroundColor: '#041846',
+                                        textTransform: 'none',
+                                        fontFamily: "Poppins"
+                                     }} onClick={handleLogin}>Login</Button>
+                    <Typography sx={{ textAlign: 'right', mt: 2,fontFamily: "Poppins"}} variant="caption">Don't have an account? <Link to="/">Register here.</Link></Typography>
                 </Box>
             </Paper>
         </>

@@ -93,8 +93,14 @@ export default function Register() {
                     <TextField sx={{
                         mb: 2
                     }} onChange={(e) => setConfirmPassword(e.target.value)} id="outlined-basic" type="password" label="Confirm Password" variant="outlined" required size="small" />
-                    <Button variant="contained" onClick={handleRegister}>Register</Button>
-                    <Typography sx={{ textAlign: 'right', mt: 2 }} variant="caption">Already have an account? <Link to="/login">Login here.</Link></Typography>
+                    <Button variant="contained"
+                       onMouseOver={(e) => e.target.style.backgroundColor = '#041846'}
+                       sx={{
+                           color: 'white',
+                           backgroundColor: '#041846',
+                           textTransform: 'none',
+                           fontFamily: "Poppins"}} onClick={handleRegister}>Register</Button>
+                    <Typography sx={{ textAlign: 'right', mt: 2,fontFamily: "Poppins" }} variant="caption">Already have an account? <Link to="/login">Login here.</Link></Typography>
                 </Box>
             </Paper>
         </>
