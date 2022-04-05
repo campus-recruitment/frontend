@@ -79,7 +79,7 @@ export default function Register() {
 
     return (
         <>
-            <Paper variant="outlined" sx={{ width: 350 }} >
+            <Paper variant="outlined" sx={{ width: 350, mt: 4 }} >
                 <Box sx={{ display: 'flex', flexDirection: 'column', p: 4 }}>
                     <TextField sx={{
                         mb: 2

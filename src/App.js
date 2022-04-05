@@ -1,17 +1,14 @@
 
 import './App.css';
 import MainDashboard from './components/dashboard/MainDashboard';
-import { Container } from '@mui/material';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
 import Register from './components/Register';
-import Login from './components/Login';
+import LoginPage from './components/LoginPage';
 import EditProfile from './components/profile/EditProfile';
-import Header from './components/Header';
-import ThemeHeader from './components/ThemeHeader';
 import { UserContext } from './contexts/userContext'
 import { useState } from 'react';
 import Cookies from 'js-cookie';
@@ -19,6 +16,7 @@ import Switching from './components/Switching';
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminRoute from './privateRouting/AdminRoute';
 import StudentRoute from './privateRouting/StudentRoute';
+import HomePage from './components/HomePage';
 
 function App() {
 
@@ -47,9 +45,9 @@ function App() {
           {/* <Header />
           <ThemeHeader /> */}
             <Routes>
-              <Route exact path="/" element={<Register />} />
+              <Route exact path="/" element={<HomePage />} />
               <Route exact path="/switch" element={<Switching />} />
-              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/login" element={<LoginPage />} />
               <Route exact path="/dashboard" element={
                 <StudentRoute>
                   <MainDashboard />

@@ -1,8 +1,16 @@
 import { Button, Card } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '@fontsource/poppins';
 
 export default function DashboardMenu() {
+    const [num, setNum] = useState(1);
+
+    useEffect(() => {
+        if(num == 1) {
+
+        }
+    }, [])
+
     return (
         <>
             <Card className='menu-card' sx={{ 
@@ -18,7 +26,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }}>Campus Visitors</Button>
+                }} onClick={() => setNum(1)}>Campus Visitors</Button>
                 <Button sx={{
                     mt: { md: 1.5, sm: 1.5},
                     color: '#051846',
@@ -26,7 +34,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }}>Your Applications</Button>
+                }} onClick={() => setNum(2)}>Your Applications</Button>
                 <Button sx={{
                     mt: { md: 1.5, sm: 1.5},
                     color: '#051846',
@@ -34,7 +42,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }}>Saved Visitors</Button>
+                }} onClick={() => setNum(3)}>Saved Visitors</Button>
                 <Button sx={{
                     mt: { md: 1.5, sm: 1.5},
                     color: '#051846',
@@ -42,7 +50,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }}>Your Eligibility</Button>
+                }} onClick={() => setNum(4)}>Your Eligibility</Button>
                 <Button sx={{
                     mt: { md: 1.5, sm: 1.5},
                     color: '#051846',
@@ -59,7 +67,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }}>Forum</Button>
+                }} onClick={() => setNum(5)}>Forum</Button>
             </Card>
         </>
     )

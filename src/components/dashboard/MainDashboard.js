@@ -5,20 +5,90 @@ import { Grid } from '@mui/material';
 import CampusVisitors from './CampusVisitors';
 import Header from '../Header';
 import ThemeHeader from '../ThemeHeader';
+import { Button, Card } from '@mui/material';
+import '@fontsource/poppins';
+import Applications from './Applications';
+import VisitorDetails from './VisitorDetails';
 
 export default function MainDashboard() {
+    const [num, setNum] = useState(1);
+    const [active, setActive] = useState(false);
 
     return (
         <>
-        <Header />
-        <ThemeHeader />
+            <Header />
+            <ThemeHeader />
             <Grid container maxWidth="lg">
                 <Grid item lg={2.5} md={3} sm={3} xs={12}>
                     <DashboardProfile />
-                    <DashboardMenu />
+                    <Card className='menu-card' sx={{
+                        mt: 1, width: { md: 225, sm: 225, xs: 'max-content', },
+                        display: 'flex', flexDirection: { md: 'column', sm: 'column', xs: 'row' },
+                        overflowX: { md: 'none', sm: 'auto', xs: 'auto' },
+                        alignItems: 'center'
+                    }}>
+                        <Button variant="outlined" sx={{
+                            mt: { md: 3, sm: 3 },
+                            color: '#FF6F3F',
+                            borderColor: '#FF6F3F',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }} onClick={() => {
+                            setNum(1);
+
+                            }}>Campus Visitors</Button>
+                        <Button sx={{
+                            mt: { md: 1.5, sm: 1.5 },
+                            color: '#051846',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }} onClick={() => setNum(2)}>Your Applications</Button>
+                        <Button sx={{
+                            mt: { md: 1.5, sm: 1.5 },
+                            color: '#051846',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }} onClick={() => setNum(3)}>Saved Visitors</Button>
+                        <Button sx={{
+                            mt: { md: 1.5, sm: 1.5 },
+                            color: '#051846',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }} onClick={() => setNum(4)}>Your Eligibility</Button>
+                        <Button sx={{
+                            mt: { md: 1.5, sm: 1.5 },
+                            color: '#051846',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }}>Placement Results</Button>
+                        <Button sx={{
+                            mt: { md: 1.5, sm: 1.5 },
+                            mb: 4,
+                            color: '#051846',
+                            width: 180,
+                            textTransform: 'none',
+                            fontFamily: "Poppins",
+                            fontWeight: 900
+                        }} onClick={() => setNum(5)}>Forum</Button>
+                    </Card>
                 </Grid>
                 <Grid item lg={9.5} md={9} sm={9} xs={12}>
-                    <CampusVisitors />
+                    {
+                        num == 1 ? <CampusVisitors setNum={setNum} /> : 
+                        num == 2 ? <Applications /> : 
+                        // num == 7 ? <VisitorDetails /> :
+                        <></>
+                    }                    
                 </Grid>
             </Grid>
         </>
