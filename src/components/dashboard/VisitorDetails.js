@@ -71,21 +71,74 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                         justifyContent: 'space-between'
 
                     }}>
-                    <Typography variant="h5" >{selectedVisitor.positionName} job/internship at {selectedVisitor.companyName}</Typography>
+                    <Typography variant="h5" sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '25,mpx',
+                            color: '#051846',
+                            fontWeight:'bold',
+                        }}>{selectedVisitor.positionName} job/internship at {selectedVisitor.companyName}</Typography>
                     <BookmarkBorder onClick={() => save(selectedVisitor._id)} />
                 </Box>
-                <Typography>About {selectedVisitor.companyName}</Typography>
-                <Typography><a href={selectedVisitor.website}>{selectedVisitor.website}</a></Typography>
-                <Typography color="text.secondary">About {selectedVisitor.aboutCompany}</Typography>
-                <Typography>About Job/Internship</Typography>
-                <Typography color="text.secondary">{selectedVisitor.description}</Typography>
-                <Typography>Skills Required</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '18px',
+                            color: '#051846',
+                            marginTop: '10px',
+                            fontWeight:'bold',
+                        }}>About {selectedVisitor.companyName}  </Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '15px',
+                            color: '#051846',
+                            marginTop: '10px',
+                    
+                        }}><a href={selectedVisitor.website}>company details </a></Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '8px',
+                        }} >About {selectedVisitor.aboutCompany}</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '8px',
+                        }} >About Job/Internship</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '10px',
+                        }} >{selectedVisitor.description}</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '10px',
+                        }} >Skills Required</Typography>
                 {selectedVisitor.skillsRequired.map(i => (
                     <Chip label={i} sx={{ ml: 2 }} />
                 ))}
-                <Typography>Number of Openings</Typography>
-                <Typography color="text.secondary">{selectedVisitor.vacancies}</Typography>
-                <Typography>Hiring Process</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '11px',
+                            color: '#051846',
+                            marginTop: '10px',
+                            fontWeight:'bold',
+                        }}>Number of Openings</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '10px',
+                        }}color="text.secondary">{selectedVisitor.vacancies}</Typography>
+                <Typography sx={{
+                            fontFamily: "Poppins",
+                            fontSize: '12px',
+                            color: '#051846',
+                            marginTop: '10px',
+                        }}>Hiring Process</Typography>
                 <ol>
                     {selectedVisitor?.hiringProcess.map(i => (
                         <li>{i}</li>
@@ -93,8 +146,13 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                 </ol>
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                     <Button sx={{ mr: 2 }} color="error" onClick={() => setSelectedVisitor(null)}>Back</Button>
-                    {applied ? <Button variant="contained" disabled>Applied</Button> :
-                        <Button variant="contained" onClick={() => applyNow(selectedVisitor._id)}>Apply Now</Button>
+                    {applied ? <Button variant="contained" sx={{ textAlign: 'right', mt: 2,fontFamily: "Poppins"}} disabled>Applied</Button> :
+                        <Button variant="contained"  sx={{
+                            color: 'white',
+                            backgroundColor: '#041846',
+                            textTransform: 'none',
+                            fontFamily: "Poppins"
+                         }} onClick={() => applyNow(selectedVisitor._id)}>Apply Now</Button>
                     }
                 </Box>
             </Box>
