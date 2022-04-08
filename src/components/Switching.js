@@ -9,11 +9,12 @@ export default function Switching() {
     return (
         <>
         <Header />
-            <Box sx={{ maxWidth: 475, textAlign: 'center' }}>
+            <Box sx={{ justifyContent:'center' }}>
                 <Card variant="outlined" sx={{ p: 1 }}>
                     <CardContent>
                         <Typography component="div"
                             sx={{
+                                textAlign:'center',
                                 mb: 1.5,
                                 fontFamily: "Poppins",
                                 fontSize: '18px',
@@ -23,6 +24,7 @@ export default function Switching() {
                         </Typography>
                         <Typography color="text.secondary"
                             sx={{
+                                textAlign:'center',
                                 mb: 1.5,
                                 fontFamily: "Poppins",
                                 fontSize: '14px'
