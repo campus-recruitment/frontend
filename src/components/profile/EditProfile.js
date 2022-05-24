@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Box, Grid, Typography, Divider, TextField, Button } from '@mui/material';
 import { UserContext } from '../../contexts/userContext';
-import PersonalDetails from './PersonalDetails';
+import { Link } from 'react-router-dom';
 import Header from '../Header';
 import ThemeHeader from '../ThemeHeader';
 
@@ -10,13 +10,13 @@ export default function EditProfile() {
     const [fullName, setFullName] = useState("");
     const [address, setAddress] = useState("");
     const [department, setDepartment] = useState("");
-    const [phoneNo, setPhoneNo] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [semester, setSemester] = useState("");
-    const [rollNo, setRollNo] = useState("");
+    const [rollno, setRollno] = useState("");
     const [github, setGithub] = useState("");
-    const [graduation, setGraduation] = useState("");
-    const [linkedin, setLinkedin] = useState("");
-    const [link, setLink] = useState("");
+    const [graduationYear, setGraduationYear] = useState("");
+    const [linkedIn, setLinkedIn] = useState("");
+    const [otherLinks, setOtherLinks] = useState("");
     const [page, setPage] = useState(1);
 
     useEffect(() => {
@@ -29,41 +29,51 @@ export default function EditProfile() {
             .then(data => {
                 console.log(data.student)
                 setFullName(data?.student.fullName)
-                setRollNo(data?.student.rollno)
+                setRollno(data?.student.rollno)
                 setDepartment(data?.student.department)
                 setSemester(data?.student.semester)
-                setGraduation(data?.student.graduationYear)
+                setGraduationYear(data?.student.graduationYear)
                 setAddress(data?.student.address)
                 setGithub(data?.student.github)
-                setLinkedin(data?.student.linkedin)
-                setLink(data?.student.otherLinks)
-                setPhoneNo(data?.student.phoneNumber)
+                setLinkedIn(data?.student.linkedIn)
+                setOtherLinks(data?.student.otherLinks)
+                setPhoneNumber(data?.student.phoneNumber)
             })
     }, [])
 
-    const handleNext = () => {
-        if(page == 1) {
-            setPage(2)
-        } else if(page == 2) {
-            setPage(3)
-        } else if(page == 3) {
-            setPage(4)
-        }
-    }
-    const handleBack = () => {
-        if(page == 2) {
-            setPage(1)
-        } else if(page == 3) {
-            setPage(2)
-        } else if(page == 4) {
-            setPage(3)
-        }
+    const handleSubmit = () => {
+        const valuedata = JSON.stringify({
+            fullName,
+            rollno,
+            department,
+            semester,
+            graduationYear,
+            phoneNumber,
+            address,
+            github,
+            linkedIn,
+            otherLinks 
+        })
+        console.log(valuedata, "dipti")
+        console.log('hello')
+        fetch(`http://localhost:5000/api/student/${user.user_id}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + user.token,
+                'Content-Type': 'application/json'
+            },
+            body: valuedata
+        }).then(res => res.json())
+            .then(data => {
+                console.log('hello again')
+                console.log(data)
+            })
     }
 
     return (
         <>
-        <Header />
-        <ThemeHeader />
+            <Header />
+            <ThemeHeader />
             <Box sx={{ m: 4, height: '100%', border: '2px solid #c8c7c7', borderRadius: '6px' }}>
                 <Grid container sx={{ p: 2 }} flexDirection="column">
                     <Grid item lg={12} md={12} sm={12} xs={12}>
@@ -91,51 +101,43 @@ export default function EditProfile() {
                         <Divider sx={{ mt: 2, backgroundColor: "#000000" }} />
                     </Grid>
                     <Grid item lg={12} md={12} sm={12} xs={12} sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                        {page == 1 ?
-                        <PersonalDetails
-                            fullName={fullName}
-                            address={address}
-                            department={department}
-                            semester={semester}
-                            rollNo={rollNo}
-                            graduation={graduation}
-                            phoneNo={phoneNo}
-                            github={github}
-                            linkedin={linkedin}
-                            link={link}
-                            setFullName={setFullName}
-                            setAddress={setAddress}
-                            setDepartment={setDepartment}
-                            setSemester={setSemester}
-                            setRollNo={setRollNo}
-                            setGraduation={setGraduation}
-                            setPhoneNo={setPhoneNo}
-                            setGithub={setGithub}
-                            setLinkedin={setLinkedin}
-                            setLink={setLink}
-                        /> : <></> }
+                        {/* <Grid item lg={12} md={12} sm={12} xs={12} sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}> */}
+                        <Box sx={{ m: 3 }}>
+                            <TextField sx={{ mt: 3 }} value={fullName} onChange={(e) => setFullName(e.target.value)} label="Full Name" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={rollno} onChange={(e) => setRollno(e.target.value)} label="Roll number" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={department} onChange={(e) => setDepartment(e.target.value)} label="Department" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={semester} onChange={(e) => setSemester(e.target.value)} label="Semester" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={graduationYear} onChange={(e) => setGraduationYear(e.target.value)} label="Graduation year" variant="outlined" size='small' fullWidth />
+                        </Box>
+                        <Box sx={{ m: 3 }}>
+                            <TextField sx={{ mt: 3 }} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} label="Phone number" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={address} onChange={(e) => setAddress(e.target.value)} label="Address" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={github} onChange={(e) => setGithub(e.target.value)} label="Github profile" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={linkedIn} onChange={(e) => setLinkedIn(e.target.value)} label="LinkedIn profile" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={otherLinks} onChange={(e) => setOtherLinks(e.target.value)} label="Other links" variant="outlined" size='small' fullWidth />
+                        </Box>
+                        {/* </Grid> */}
                     </Grid>
                     <Grid item sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Link to="/dashboard"><Button onMouseOver={(e) => {
+                            e.target.style.color = '#401E44'
+                            e.target.style.borderColor = '#401E44'
+                        }} sx={{
+                                mr: 3, pl: 3, pr: 3,
+                                color: '#401E44',
+                                borderColor: '#401E44',
+                                textTransform: 'none',
+                                fontFamily: "Poppins"
+                            }} variant="outlined">Back</Button></Link>
                         <Button onMouseOver={(e) => {
-                            e.target.style.color = '#FF6F3F'
-                            e.target.style.borderColor = '#FF6F3F'
-                        }} onClick={handleBack}
-                        sx={{
-                            mr: 3, pl: 3, pr: 3,
-                            color: '#FF6F3F',
-                            borderColor: '#FF6F3F',
-                            textTransform: 'none',
-                            fontFamily: "Poppins"
-                        }} variant="outlined">Back</Button>
-                        <Button onMouseOver={(e) => {
-                            e.target.style.backgroundColor = '#FF6F3F'
-                        }} onClick={handleNext}
+                            e.target.style.backgroundColor = '#401E44'
+                        }} onClick={handleSubmit}
                             sx={{
                                 mr: 3, pl: 3, pr: 3,
                                 color: "#FFFFFF",
                                 textTransform: 'none',
-                                backgroundColor: '#FF6F3F'
-                            }} variant="contained">Next</Button>
+                                backgroundColor: '#401E44'
+                            }} variant="contained">Submit</Button>
                     </Grid>
                 </Grid>
             </Box>

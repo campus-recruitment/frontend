@@ -8,6 +8,7 @@ import ThemeHeader from '../ThemeHeader';
 import { Button, Card } from '@mui/material';
 import '@fontsource/poppins';
 import Applications from './Applications';
+import Saved from './Saved';
 import VisitorDetails from './VisitorDetails';
 
 export default function MainDashboard() {
@@ -27,10 +28,9 @@ export default function MainDashboard() {
                         overflowX: { md: 'none', sm: 'auto', xs: 'auto' },
                         alignItems: 'center'
                     }}>
-                        <Button variant="outlined" sx={{
+                        <Button sx={{
                             mt: { md: 3, sm: 3 },
-                            color: '#FF6F3F',
-                            borderColor: '#FF6F3F',
+                            color: '#051846',
                             width: 180,
                             textTransform: 'none',
                             fontFamily: "Poppins",
@@ -62,7 +62,7 @@ export default function MainDashboard() {
                             textTransform: 'none',
                             fontFamily: "Poppins",
                             fontWeight: 900
-                        }} onClick={() => setNum(4)}>Your Eligibility</Button>
+                        }} onClick={() => setNum(4)}>Notices</Button>
                         <Button sx={{
                             mt: { md: 1.5, sm: 1.5 },
                             color: '#051846',
@@ -86,6 +86,7 @@ export default function MainDashboard() {
                     {
                         num == 1 ? <CampusVisitors setNum={setNum} /> : 
                         num == 2 ? <Applications /> : 
+                        num == 3 ? <Saved /> :
                         // num == 7 ? <VisitorDetails /> :
                         <></>
                     }                    

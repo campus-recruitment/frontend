@@ -17,6 +17,11 @@ import AdminDashboard from './components/admin/AdminDashboard';
 import AdminRoute from './privateRouting/AdminRoute';
 import StudentRoute from './privateRouting/StudentRoute';
 import HomePage from './components/HomePage';
+import VisitorsForm from './components/admin/VistorsForm';
+import Analysis from './components/admin/Analysis';
+import VisitorsList from './components/admin/VisitorsList';
+import StudentsList from './components/admin/StudentsList';
+import NoticeForm from './components/admin/NoticeForm';
 
 function App() {
 
@@ -61,6 +66,31 @@ function App() {
               <Route exact path="/admin-dashboard" element={
                 <AdminRoute>
                   <AdminDashboard />
+                </AdminRoute>
+              } />
+              <Route exact path="/admin-dashboard/visitor-form" element={
+                <AdminRoute>
+                  <VisitorsForm />
+                </AdminRoute>
+              } />
+              <Route exact path="/admin-dashboard/analysis" element={
+                <AdminRoute>
+                  <Analysis />
+                </AdminRoute>
+              } />
+              <Route exact path="/admin-dashboard/students-list" element={
+                <AdminRoute>
+                  <StudentsList />
+                </AdminRoute>
+              } />
+              <Route exact path="/admin-dashboard/visitors-list" element={
+                <AdminRoute>
+                  <VisitorsList />
+                </AdminRoute>
+              } />
+              <Route exact path="/admin-dashboard/notice-form" element={
+                <AdminRoute>
+                  <NoticeForm />
                 </AdminRoute>
               } />
             </Routes>

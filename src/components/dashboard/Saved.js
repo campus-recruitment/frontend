@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Box, Grid, Card, CardContent, Typography, CardActions, Button } from '@mui/material';
 import { LocationOn, PlayCircleOutline, Money, DateRange, WorkOutline, ArrowForwardIos } from '@mui/icons-material';
 import { UserContext } from '../../contexts/userContext';
 
-export default function Applications() {
+export default function Saved() {
     const { user } = useContext(UserContext)
     const [visitors, setVisitors] = useState([]);
 
@@ -16,7 +16,7 @@ export default function Applications() {
         }).then(res => res.json())
             .then(data => {
                 console.log(data.student);
-                setVisitors(data.student.appliedVisitors);
+                setVisitors(data.student.savedVisitors);
             })
     }, [])
     return (
@@ -31,7 +31,7 @@ export default function Applications() {
                 color: '#FFFFFF',
                 fontWeight: 900,
             }} >
-                Your Applications
+                Your Saved Visitors
             </Typography>
             <Box sx={{ height: '74vh', border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                 <Grid container>
