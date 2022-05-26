@@ -39,12 +39,12 @@ export default function Saved() {
             }} >
                 Your Saved Visitors
             </Typography>
-            <Box sx={{ height: '74vh', border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
+            <Box sx={{ height: '74vh', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                 {visitors.length != 0 ?
                     <Grid container>
                         <Grid item lg={12} md={12} sm={12} xs={12}>
                             {visitors?.map((vis, i) => (
-                                <Card sx={{ m: 2 }} key={i}>
+                                <Card elevation={0} variant="outlined" sx={{ m: 2 }} key={i}>
                                     <CardContent>
                                         <Typography variant="h6" component="div">
                                             {vis.positionName}
@@ -81,24 +81,6 @@ export default function Saved() {
                                             </Box>
                                         </Box>
                                     </CardContent>
-                                    {/* <CardActions sx={{ display: 'flex', justifyContent: 'space-between', mt: -1 }}>
-                                    {vis.fullTime ?
-                                        <Typography sx={{ fontSize: 14, ml: 1 }} color="text.secondary" gutterBottom>
-                                            Full-time
-                                        </Typography>
-                                        :
-                                        <Typography sx={{ fontSize: 14, ml: 1 }} color="text.secondary" gutterBottom>
-                                            Part-time
-                                        </Typography>
-                                    } */}
-                                    {/* <Button size="small" sx={{
-                                            textTransform: 'none',
-                                            color: '#051846',
-                                            fontFamily: "Poppins",
-                                            fontWeight: 900,
-                                            fontSize: 14
-                                        }}>View Details<ArrowForwardIos sx={{ fontSize: '1.2em' }} /></Button> */}
-                                    {/* </CardActions> */}
                                 </Card>
                             ))}
                         </Grid>

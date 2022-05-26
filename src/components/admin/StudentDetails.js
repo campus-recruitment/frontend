@@ -1,19 +1,55 @@
-import React from 'react';
-import { Button, Box, Paper, Grid, Table, TableHead, TableRow, TableCell, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, Box, Paper, Grid, Table, TableRow, TableCell, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogActions, DialogContentText, DialogContent, TextField } from '@mui/material';
 
 export default function StudentDetails({ selectedStudent, setSelectedStudent }) {
+    const [open, setOpen] = React.useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const reset = () => {
+        console.log('start')
+        if (password === confirmPassword) {
+            console.log('equal') 
+            fetch("http://localhost:5000/reset", {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    alert(data.message);
+                    setEmail("");
+                    setPassword("");
+                    setConfirmPassword("");
+                    setOpen(false);
+                })
+        }
+    }
+
     return (
         <>
             <Typography variant='h5' sx={{ m: 2 }}>{selectedStudent.fullName} ({selectedStudent.email})</Typography>
             <Box sx={{ width: '100%' }}>
-                {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
                 <Grid container spacing={2} justifyContent="center">
                     <Grid item xs={12} sm={12} md={5} lg={5}>
                         <Paper sx={{ width: '100%' }}>
-                            <Table
-                                // sx={{ maxWidth: 750 }}
-                                aria-labelledby="tableTitle"
-                            >
+                            <Table aria-labelledby="tableTitle" >
                                 <TableRow>
                                     <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Student ID</TableCell>
                                     <TableCell align="center">{selectedStudent.userId}</TableCell>
@@ -123,6 +159,64 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                                 textTransform: 'none',
                                 backgroundColor: '#401E44'
                             }} variant='contained' onClick={() => setSelectedStudent(null)}>Back</Button>
+                            <Button sx={{
+                                mr: 3, pl: 3, pr: 3,
+                                color: "#FFFFFF",
+                                textTransform: 'none',
+                                backgroundColor: 'red'
+                            }} variant='contained' onClick={handleClickOpen}>Reset Password</Button>
+                            <Dialog open={open} onClose={handleClose}>
+                                <DialogTitle>Reset Password</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        Student Name: {selectedStudent.fullName}
+                                    </DialogContentText>
+                                    <TextField value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        margin="dense"
+                                        id="email"
+                                        label="Student's Email"
+                                        type="email"
+                                        fullWidth
+                                        variant="standard"
+                                        size="small"
+                                    />
+                                    <TextField value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        margin="dense"
+                                        id="password"
+                                        label="New Password"
+                                        type="password"
+                                        fullWidth
+                                        variant="standard"
+                                        size="small"
+                                    />
+                                    <TextField value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        margin="dense"
+                                        id="confirmPassword"
+                                        label="Confirm Password"
+                                        type="password"
+                                        fullWidth
+                                        variant="standard"
+                                        size="small"
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button sx={{
+                                        mr: 1, pl: 3, pr: 3,
+                                        color: "#401E44",
+                                        textTransform: 'none',
+                                        borderColor: '#401E44'
+                                    }} variant="outlined" onClick={handleClose}>Cancel</Button>
+                                    <Button sx={{
+                                        mr: 3, pl: 3, pr: 3,
+                                        color: "#FFFFFF",
+                                        textTransform: 'none',
+                                        backgroundColor: 'red'
+                                    }} variant="contained" onClick={reset}>Reset</Button>
+                                </DialogActions>
+                            </Dialog>
                         </Box>
                     </Grid>
                 </Grid>

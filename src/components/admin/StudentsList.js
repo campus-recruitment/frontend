@@ -52,15 +52,15 @@ export default function StudentsList() {
                                 >
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell align="center">SNo.</TableCell>
-                                            <TableCell align="center">Student ID</TableCell>
-                                            <TableCell align="center">Roll Number</TableCell>
-                                            <TableCell align="center">Full Name</TableCell>
-                                            <TableCell align="center">Department</TableCell>
-                                            <TableCell align="center">Semester</TableCell>
-                                            <TableCell align="center">Gender</TableCell>
-                                            <TableCell align="center">Email Id</TableCell>
-                                            <TableCell align="left">Details</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>SNo.</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Student ID</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Roll Number</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Full Name</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Department</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Semester</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Gender</TableCell>
+                                            <TableCell align="center" sx={{ fontWeight: 'bolder' }}>Email Id</TableCell>
+                                            <TableCell align="left" sx={{ fontWeight: 'bolder' }}>Details</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     {students && filterStudents.map((stud, i) => (

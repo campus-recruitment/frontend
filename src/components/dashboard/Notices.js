@@ -38,11 +38,11 @@ export default function Notices() {
             }} >
                 Notices
             </Typography>
-            <Box sx={{ height: '74vh', border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
+            <Box sx={{ height: '74vh', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                 <Grid container>
                     <Grid item lg={12} md={12} sm={12} xs={12}>
                         {notice.map((not, i) => (
-                            <Card key={i} sx={{ m: 2 }} >
+                            <Card elevation={0} variant="outlined" key={i} sx={{ m: 2 }} >
                                 <CardContent>
                                     <Typography sx={{ fontSize: '14px' }} color="text.secondary">Date: {dateFormat(not.date)}</Typography>
                                     <Typography sx={{ textAlign: 'center', fontSize: '16px', fontWeight: 'bold', textDecoration: 'underline' }}>{not.title}</Typography>

@@ -28,7 +28,7 @@ export default function DashboardProfile() {
 
     return (
         <>
-            <Card sx={{ width: 225, mt: 2 }}>
+            <Card elevation={0} variant="outlined" sx={{ width: 225, mt: 2 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <Tooltip title="Edit Profile" placement="right">
                         <Link to="/edit-profile"><BorderColor sx={{ fontSize: '15px', color: '#401E44', p: 1, cursor: 'pointer' }} /></Link>

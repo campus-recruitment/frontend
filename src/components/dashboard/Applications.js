@@ -39,12 +39,12 @@ export default function Applications() {
             }} >
                 My Applications
             </Typography>
-            <Box sx={{ height: '74vh', border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
+            <Box sx={{ height: '74vh', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                 {visitors.length != 0 ?
                     <Grid container>
                         <Grid item lg={12} md={12} sm={12} xs={12}>
                             {visitors?.map((vis, i) => (
-                                <Card sx={{ m: 2 }} key={i}>
+                                <Card elevation={0} variant="outlined" sx={{ m: 2 }} key={i}>
                                     <CardContent>
                                         <Typography variant="h6" component="div">
                                             {vis.positionName}

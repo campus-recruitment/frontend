@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DashboardProfile from './DashboardProfile';
 import DashboardMenu from './DashboardMenu'
-import { Grid } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 import CampusVisitors from './CampusVisitors';
 import Header from '../Header';
 import ThemeHeader from '../ThemeHeader';
@@ -20,10 +20,10 @@ export default function MainDashboard() {
         <>
             <Header />
             <ThemeHeader />
-            <Grid container maxWidth="lg">
+            <Grid container maxWidth="lg" sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                 <Grid item lg={2.5} md={3} sm={3} xs={12}>
                     <DashboardProfile />
-                    <Card className='menu-card' sx={{
+                    <Card elevation={0} variant="outlined" className='menu-card' sx={{
                         mt: 1, width: { md: 225, sm: 225, xs: 'max-content', },
                         display: 'flex', flexDirection: { md: 'column', sm: 'column', xs: 'row' },
                         overflowX: { md: 'none', sm: 'auto', xs: 'auto' },
@@ -39,7 +39,7 @@ export default function MainDashboard() {
                         }} onClick={() => {
                             setNum(1);
 
-                            }}>Campus Visitors</Button>
+                        }}>Campus Visitors</Button>
                         <Button sx={{
                             mt: { md: 1.5, sm: 1.5 },
                             color: '#051846',
@@ -63,7 +63,7 @@ export default function MainDashboard() {
                             textTransform: 'none',
                             fontFamily: "Poppins",
                             fontWeight: 900
-                        }} onClick={() => setNum(4)}>Notices</Button>
+                        }} onClick={() => setNum(4)}>Notice Board</Button>
                         <Button sx={{
                             mt: { md: 1.5, sm: 1.5 },
                             color: '#051846',
@@ -85,12 +85,12 @@ export default function MainDashboard() {
                 </Grid>
                 <Grid item lg={9.5} md={9} sm={9} xs={12}>
                     {
-                        num == 1 ? <CampusVisitors setNum={setNum} /> : 
-                        num == 2 ? <Applications /> : 
-                        num == 3 ? <Saved /> :
-                        num == 4 ? <Notices /> :
-                        <></>
-                    }                    
+                        num == 1 ? <CampusVisitors setNum={setNum} /> :
+                            num == 2 ? <Applications /> :
+                                num == 3 ? <Saved /> :
+                                    num == 4 ? <Notices /> :
+                                        <></>
+                    }
                 </Grid>
             </Grid>
         </>

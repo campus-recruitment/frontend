@@ -58,14 +58,14 @@ export default function CampusVisitors({ setNum }) {
                     }} >
                         Campus Visitors
                     </Typography>
-                    <Box sx={{ height: '74vh', border: '2px solid #c8c7c7', borderRadius: '6px' }}>
+                    <Box sx={{ height: '74vh', borderRadius: '6px' }}>
                         {filterVisitors.filter(vis => { return isFuture(new Date(vis.dueDate)) || isToday(new Date(vis.dueDate)) }).length != 0 ?
                             <Grid container>
                                 <Grid item lg={8} md={8} sm={12} xs={12} sx={{ height: '74vh', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                                     {visitors && filterVisitors.filter(vis => {
                                         return isFuture(new Date(vis.dueDate)) || isToday(new Date(vis.dueDate))
                                     }).map((vis, i) => (
-                                        <Card sx={{ m: 2 }} key={i}>
+                                        <Card sx={{ m: 2 }} elevation={0} variant="outlined" key={i}>
                                             <CardContent>
                                                 <Typography variant="h6" component="div">
                                                     {vis.positionName}
