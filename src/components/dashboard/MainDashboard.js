@@ -10,6 +10,7 @@ import '@fontsource/poppins';
 import Applications from './Applications';
 import Saved from './Saved';
 import VisitorDetails from './VisitorDetails';
+import Notices from './Notices';
 
 export default function MainDashboard() {
     const [num, setNum] = useState(1);
@@ -46,7 +47,7 @@ export default function MainDashboard() {
                             textTransform: 'none',
                             fontFamily: "Poppins",
                             fontWeight: 900
-                        }} onClick={() => setNum(2)}>Your Applications</Button>
+                        }} onClick={() => setNum(2)}>My Applications</Button>
                         <Button sx={{
                             mt: { md: 1.5, sm: 1.5 },
                             color: '#051846',
@@ -87,7 +88,7 @@ export default function MainDashboard() {
                         num == 1 ? <CampusVisitors setNum={setNum} /> : 
                         num == 2 ? <Applications /> : 
                         num == 3 ? <Saved /> :
-                        // num == 7 ? <VisitorDetails /> :
+                        num == 4 ? <Notices /> :
                         <></>
                     }                    
                 </Grid>

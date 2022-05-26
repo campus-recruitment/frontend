@@ -10,7 +10,6 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
 
     useEffect(() => {
         console.log(JSON.stringify(selectedVisitor, null, 1))
-        console.log(selectedVisitor.studentsSaved.includes(user._id))
         if (selectedVisitor.studentsApplied.includes(user._id)) {
             setApplied(true);
         }
@@ -59,6 +58,26 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
             })
     }
 
+    const unsave = (id) => {
+        console.log('helllooooo')
+        fetch(`http://localhost:5000/api/student/${user.user_id}/remove-visitor`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + user.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                savedVisitors: id,
+                _id: user._id
+            })
+        }).then(res => res.json())
+            .then(data => {
+                console.log('hello again....')
+                setSaved(false);
+                console.log(data);
+            })
+    }
+
     return (
         <>
             <Typography gutterBottom component="div" sx={{
@@ -85,7 +104,7 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                         color: '#051846',
                         fontWeight: 'bold',
                     }}>{selectedVisitor.positionName} job/internship at {selectedVisitor.companyName}</Typography>
-                    {saved ? <Bookmark /> :
+                    {saved ? <Bookmark onClick={() => unsave(selectedVisitor._id)} /> :
                         <BookmarkBorder onClick={() => save(selectedVisitor._id)} />
                     }
                 </Box>

@@ -16,7 +16,7 @@ export default function EditProfile() {
     const [github, setGithub] = useState("");
     const [graduationYear, setGraduationYear] = useState("");
     const [linkedIn, setLinkedIn] = useState("");
-    const [otherLinks, setOtherLinks] = useState("");
+    const [gender, setGender] = useState("");
     const [page, setPage] = useState(1);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function EditProfile() {
                 setAddress(data?.student.address)
                 setGithub(data?.student.github)
                 setLinkedIn(data?.student.linkedIn)
-                setOtherLinks(data?.student.otherLinks)
+                setGender(data?.student.gender)
                 setPhoneNumber(data?.student.phoneNumber)
             })
     }, [])
@@ -52,10 +52,8 @@ export default function EditProfile() {
             address,
             github,
             linkedIn,
-            otherLinks 
+            gender 
         })
-        console.log(valuedata, "dipti")
-        console.log('hello')
         fetch(`http://localhost:5000/api/student/${user.user_id}`, {
             method: 'PUT',
             headers: {
@@ -65,8 +63,17 @@ export default function EditProfile() {
             body: valuedata
         }).then(res => res.json())
             .then(data => {
-                console.log('hello again')
-                console.log(data)
+                alert("Your profile is updated!!")
+                setFullName("");
+                setRollno("");
+                setDepartment("");
+                setSemester("");
+                setGraduationYear("");
+                setPhoneNumber("");
+                setAddress("");
+                setGithub("");
+                setLinkedIn("");
+                setGender("");
             })
     }
 
@@ -114,7 +121,7 @@ export default function EditProfile() {
                             <TextField sx={{ mt: 3 }} value={address} onChange={(e) => setAddress(e.target.value)} label="Address" variant="outlined" size='small' fullWidth />
                             <TextField sx={{ mt: 3 }} value={github} onChange={(e) => setGithub(e.target.value)} label="Github profile" variant="outlined" size='small' fullWidth />
                             <TextField sx={{ mt: 3 }} value={linkedIn} onChange={(e) => setLinkedIn(e.target.value)} label="LinkedIn profile" variant="outlined" size='small' fullWidth />
-                            <TextField sx={{ mt: 3 }} value={otherLinks} onChange={(e) => setOtherLinks(e.target.value)} label="Other links" variant="outlined" size='small' fullWidth />
+                            <TextField sx={{ mt: 3 }} value={gender} onChange={(e) => setGender(e.target.value)} label="Gender" variant="outlined" size='small' fullWidth />
                         </Box>
                         {/* </Grid> */}
                     </Grid>

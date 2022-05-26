@@ -34,7 +34,7 @@ export default function DashboardMenu() {
                     textTransform: 'none',
                     fontFamily: "Poppins",
                     fontWeight: 900
-                }} onClick={() => setNum(2)}>Your Applications</Button>
+                }} onClick={() => setNum(2)}>My Applications</Button>
                 <Button sx={{
                     mt: { md: 1.5, sm: 1.5},
                     color: '#051846',

@@ -45,7 +45,6 @@ export default function StudentsList() {
                     </Box>
                     <Box sx={{ width: '100%' }}>
                         <Paper sx={{ width: '100%', mb: 2 }}>
-                            {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
                             <TableContainer>
                                 <Table
                                     sx={{ minWidth: 750 }}
@@ -54,6 +53,7 @@ export default function StudentsList() {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell align="center">SNo.</TableCell>
+                                            <TableCell align="center">Student ID</TableCell>
                                             <TableCell align="center">Roll Number</TableCell>
                                             <TableCell align="center">Full Name</TableCell>
                                             <TableCell align="center">Department</TableCell>
@@ -69,19 +69,22 @@ export default function StudentsList() {
                                                 {i + 1}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {stud.rollno}
+                                                {stud.userId}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {stud.rollno ?? "--"}
                                             </TableCell>
                                             <TableCell align="center">
                                                 {stud.fullName}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {stud.department}
+                                                {stud.department ?? "--"}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {stud.semester}
+                                                {stud.semester ?? "--"}
                                             </TableCell>
                                             <TableCell align="center">
-                                                {stud.gender}
+                                                {stud.gender ?? "--"}
                                             </TableCell>
                                             <TableCell align="center">
                                                 {stud.email}
