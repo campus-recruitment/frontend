@@ -1,4 +1,4 @@
-import { Table, TableHead, TableRow, TableCell, TableContainer, Paper, Box, TextField } from '@mui/material';
+import { Table, TableHead, TableRow, TableCell, TableContainer, Paper, Box, TextField, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import React, { useEffect, useContext, useState } from 'react';
 import { UserContext } from '../../contexts/userContext';
 import Header from '../Header';
@@ -12,7 +12,7 @@ export default function StudentsList() {
     const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/student', {
+        fetch(`http://localhost:5000/api/student`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + user.token
@@ -23,6 +23,19 @@ export default function StudentsList() {
                 setStudents(data.students);
             })
     }, [])
+
+    // const handleYear = (e) => {
+    //     fetch(`http://localhost:5000/api/student/${e.target.value}`, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Authorization': 'Bearer ' + user.token
+    //         }
+    //     }).then(res => res.json())
+    //         .then(data => {
+    //             console.log(data.students);
+    //             setStudents(data.students);
+    //         })
+    // }
 
     const handleSearch = (event) => {
         setSearch(event.target.value);
@@ -42,6 +55,14 @@ export default function StudentsList() {
                 <Box sx={{ m: 4 }}>
                     <Box sx={{ display: 'flex', justifyContent: 'end', mb: 2 }}>
                         <TextField id="search" label="Search by Name" type="text" onChange={handleSearch} size="small" />
+                        {/* <FormControl sx={{ width: 175, ml: 1 }}>
+                            <InputLabel id="demo-simple-select-label">Graduation Year</InputLabel>
+                            <Select onChange={handleYear} label="Graduation Year" size="small">
+                                <MenuItem value={10}>2021</MenuItem>
+                                <MenuItem value={20}>2022</MenuItem>
+                                <MenuItem value={30}>2023</MenuItem>
+                            </Select>
+                        </FormControl> */}
                     </Box>
                     <Box sx={{ width: '100%' }}>
                         <Paper sx={{ width: '100%', mb: 2 }}>

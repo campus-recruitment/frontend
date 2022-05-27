@@ -23,7 +23,7 @@ export default function AdminDashboard() {
                             color: "#FFFFFF",
                             textTransform: 'none',
                             backgroundColor: '#401E44'
-                        }} variant='contained'>Analysis</Button></Link>
+                        }} variant='contained'>Data & Statistics</Button></Link>
                     </CardActions>
                 </Card>
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
@@ -75,6 +75,6 @@ export default function AdminDashboard() {
     )
 }
 
-// Analysis - total registered students, total visitors added
+// Analysis - total students, total visitors added, Total student placed and unplaced (Categorised by branch and academic year), Highest package (Categorized by branch and acedemic year), Average package (Categorized by branch and academic year), Total queries unanswered, 
 // list of students - with their details 
 // list of visitors - with details 

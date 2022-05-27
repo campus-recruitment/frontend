@@ -146,9 +146,9 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                     color: '#051846',
                     marginTop: '10px',
                 }} >Skills Required</Typography>
-                {selectedVisitor.skillsRequired.map(i => (
+                {/* {selectedVisitor.skillsRequired.map(i => (
                     <Chip label={i} sx={{ ml: 2 }} />
-                ))}
+                ))} */}
                 <Typography sx={{
                     fontFamily: "Poppins",
                     fontSize: '11px',
