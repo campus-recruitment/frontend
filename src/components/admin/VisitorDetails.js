@@ -17,7 +17,6 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
     };
 
     const selectVisitor = (userId, id) => {
-        console.log('hello')
         fetch(`http://localhost:5000/api/student/${userId}/select-visitor`, {
             method: 'PUT',
             headers: {
@@ -30,13 +29,29 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
             })
         }).then(res => res.json())
             .then(data => {
-                console.log('hello again....')
+                alert('Student added to the placed list.')
+                setSelectedVisitor(null);
                 console.log(data);
             })
     }
 
-    const deselectVisitor = () => {
-
+    const deselectVisitor = (userId, id) => {
+        fetch(`http://localhost:5000/api/student/${userId}/remove-selected-visitor`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + user.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                selectedVisitors: selectedVisitor._id,
+                _id: id
+            })
+        }).then(res => res.json())
+            .then(data => {
+                alert('Student removed from the placed list.')
+                setSelectedVisitor(null);
+                console.log(data);
+            })
     }
 
     const deleteVisitor = () => {
@@ -129,13 +144,13 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                                                     color: "red",
                                                     textTransform: 'none',
                                                     borderColor: 'red'
-                                                }} variant="outlined">Remove</Button> :
+                                                }} variant="outlined" size="small">Remove</Button> :
                                                 <Button onClick={() => selectVisitor(stud.userId, stud._id)} sx={{
                                                     mr: 1, pl: 2, pr: 2,
                                                     color: "#401E44",
                                                     textTransform: 'none',
                                                     borderColor: '#401E44'
-                                                }} variant="outlined">Select</Button>
+                                                }} variant="outlined" size="small">Select</Button>
                                             }
                                         </TableCell>
                                     </TableRow>

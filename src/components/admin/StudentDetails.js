@@ -19,7 +19,7 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
     const reset = () => {
         console.log('start')
         if (password === confirmPassword) {
-            console.log('equal') 
+            console.log('equal')
             fetch("http://localhost:5000/reset", {
                 method: 'PUT',
                 headers: {
@@ -113,6 +113,7 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                                         <TableCell sx={{ fontWeight: 'bolder' }}>Visitor ID</TableCell>
                                         <TableCell sx={{ fontWeight: 'bolder' }}>Visitor Name</TableCell>
                                         <TableCell sx={{ fontWeight: 'bolder' }}>Role</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Package</TableCell>
                                     </TableRow> :
                                     <TableRow sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <TableCell sx={{ color: "red" }}>---- No Applied Visitor ----</TableCell>
@@ -124,6 +125,7 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                                         <TableCell>{stud._id}</TableCell>
                                         <TableCell>{stud.companyName}</TableCell>
                                         <TableCell>{stud.positionName}</TableCell>
+                                        <TableCell>{stud.packages}</TableCell>
                                     </TableRow>
                                 ))}
                             </Table>
@@ -133,10 +135,11 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                             <Table>
                                 {selectedStudent.savedVisitors.length != 0 ?
                                     <TableRow>
-                                        <TableCell>SNo.</TableCell>
-                                        <TableCell>Visitor ID</TableCell>
-                                        <TableCell>Visitor Name</TableCell>
-                                        <TableCell>Role</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>SNo.</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Visitor ID</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Visitor Name</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Role</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Package</TableCell>
                                     </TableRow> :
                                     <TableRow sx={{ display: 'flex', justifyContent: 'center' }}>
                                         <TableCell sx={{ color: "red" }}>---- No Saved Visitor ----</TableCell>
@@ -148,6 +151,33 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                                         <TableCell>{stud._id}</TableCell>
                                         <TableCell>{stud.companyName}</TableCell>
                                         <TableCell>{stud.positionName}</TableCell>
+                                        <TableCell>{stud.packages}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </Table>
+                            <TableRow sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <TableCell sx={{ fontWeight: 'bolder' }}>Placed Visitors</TableCell>
+                            </TableRow>
+                            <Table>
+                                {selectedStudent.selectedVisitors.length != 0 ?
+                                    <TableRow>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>SNo.</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Visitor ID</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Visitor Name</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Role</TableCell>
+                                        <TableCell sx={{ fontWeight: 'bolder' }}>Package</TableCell>
+                                    </TableRow> :
+                                    <TableRow sx={{ display: 'flex', justifyContent: 'center' }}>
+                                        <TableCell sx={{ color: "red" }}>---- No Saved Visitor ----</TableCell>
+                                    </TableRow>
+                                }
+                                {selectedStudent.selectedVisitors?.map((stud, i) => (
+                                    <TableRow>
+                                        <TableCell>{i + 1}</TableCell>
+                                        <TableCell>{stud._id}</TableCell>
+                                        <TableCell>{stud.companyName}</TableCell>
+                                        <TableCell>{stud.positionName}</TableCell>
+                                        <TableCell>{stud.packages}</TableCell>
                                     </TableRow>
                                 ))}
                             </Table>

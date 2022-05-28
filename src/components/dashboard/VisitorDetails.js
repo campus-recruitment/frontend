@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Box, Typography, Chip, Button } from '@mui/material';
 import { UserContext } from '../../contexts/userContext';
 import { BookmarkBorder, Bookmark } from '@mui/icons-material';
+import { format } from 'date-fns';
 
 export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) {
     const { user } = useContext(UserContext)
@@ -78,6 +79,10 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
             })
     }
 
+    function dateFormat(date) {
+        return format(new Date(date), 'do LLL yyyy')
+    }
+
     return (
         <>
             <Typography gutterBottom component="div" sx={{
@@ -92,7 +97,7 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
             }} >
                 Visitor's Description
             </Typography>
-            <Box sx={{ height: '74vh', p:2, border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
+            <Box sx={{ height: '74vh', p: 2, border: '2px solid #c8c7c7', borderRadius: '6px', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'space-between'
@@ -104,84 +109,136 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                         color: '#051846',
                         fontWeight: 'bold',
                     }}>{selectedVisitor.positionName} job/internship at {selectedVisitor.companyName}</Typography>
-                    {saved ? <Bookmark onClick={() => unsave(selectedVisitor._id)} /> :
-                        <BookmarkBorder onClick={() => save(selectedVisitor._id)} />
+                    {saved ? <Bookmark onClick={() => unsave(selectedVisitor._id)} sx={{ fontSize: '30px' }} /> :
+                        <BookmarkBorder onClick={() => save(selectedVisitor._id)} sx={{ fontSize: '30px' }} />
                     }
                 </Box>
                 <Typography sx={{
-                    fontFamily: "Poppins",
-                    fontSize: '18px',
-                    color: '#051846',
-                    marginTop: '10px',
-                    fontWeight: 'bold',
-                }}>About {selectedVisitor.companyName}  </Typography>
-                <Typography sx={{
+                    mt: 2,
                     fontFamily: "Poppins",
                     fontSize: '15px',
                     color: '#051846',
-                    marginTop: '10px',
-
-                }}><a href={selectedVisitor.website}>{selectedVisitor.website}</a></Typography>
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
+                }}>About {selectedVisitor.companyName}  </Typography>
                 <Typography sx={{
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '14px',
                     color: '#051846',
-                    marginTop: '8px',
                 }} >About {selectedVisitor.aboutCompany}</Typography>
                 <Typography sx={{
+                    mt: 1,
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '15px',
                     color: '#051846',
-                    marginTop: '8px',
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
+                }}>Website:  </Typography>
+                <Typography sx={{
+                    fontFamily: "Poppins",
+                    fontSize: '14px',
+                    color: '#051846',
+                }} ><a href={selectedVisitor.website} style={{ textDecoration: 'none', fontSize: '14px' }}> {selectedVisitor.website}</a></Typography>
+                <Typography sx={{
+                    mt: 1,
+                    fontFamily: "Poppins",
+                    fontSize: '15px',
+                    color: '#051846',
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
                 }} >About Job/Internship</Typography>
                 <Typography sx={{
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '14px',
                     color: '#051846',
-                    marginTop: '10px',
                 }} >{selectedVisitor.description}</Typography>
                 <Typography sx={{
+                    mt: 1,
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '15px',
                     color: '#051846',
-                    marginTop: '10px',
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
                 }} >Skills Required</Typography>
-                {/* {selectedVisitor.skillsRequired.map(i => (
-                    <Chip label={i} sx={{ ml: 2 }} />
-                ))} */}
                 <Typography sx={{
                     fontFamily: "Poppins",
-                    fontSize: '11px',
+                    fontSize: '14px',
                     color: '#051846',
-                    marginTop: '10px',
+                }} >{selectedVisitor.skillsRequired}</Typography>
+                <Typography sx={{
+                    mt: 1,
+                    fontFamily: "Poppins",
+                    fontSize: '15px',
+                    color: '#051846',
                     fontWeight: 'bold',
+                    textDecoration: 'underline'
                 }}>Number of Openings</Typography>
                 <Typography sx={{
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '14px',
                     color: '#051846',
-                    marginTop: '10px',
                 }} color="text.secondary">{selectedVisitor.vacancies}</Typography>
                 <Typography sx={{
+                    mt: 1,
                     fontFamily: "Poppins",
-                    fontSize: '12px',
+                    fontSize: '15px',
                     color: '#051846',
-                    marginTop: '10px',
-                }}>Hiring Process</Typography>
-                <ol>
-                    {selectedVisitor?.hiringProcess.map(i => (
-                        <li>{i}</li>
-                    ))}
-                </ol>
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
+                }}>Location</Typography>
+                <Typography sx={{
+                    fontFamily: "Poppins",
+                    fontSize: '14px',
+                    color: '#051846',
+                }} color="text.secondary">{selectedVisitor.location}</Typography>
+                <Typography sx={{
+                    mt: 1,
+                    fontFamily: "Poppins",
+                    fontSize: '15px',
+                    color: '#051846',
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
+                }}>Apply By</Typography>
+                <Typography sx={{
+                    fontFamily: "Poppins",
+                    fontSize: '14px',
+                    color: '#051846',
+                }} color="text.secondary">{dateFormat(selectedVisitor.dueDate)}</Typography>
+                <Typography sx={{
+                    mt: 1,
+                    fontFamily: "Poppins",
+                    fontSize: '15px',
+                    color: '#051846',
+                    fontWeight: 'bold',
+                    textDecoration: 'underline'
+                }}>Package</Typography>
+                <Typography sx={{
+                    fontFamily: "Poppins",
+                    fontSize: '14px',
+                    color: '#051846',
+                }} color="text.secondary">{selectedVisitor.packages}</Typography>
+
                 <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Button sx={{ mr: 2 }} color="error" onClick={() => setSelectedVisitor(null)}>Back</Button>
-                    {applied ? <Button variant="contained" sx={{ textAlign: 'right', mt: 2, fontFamily: "Poppins" }} disabled>Applied</Button> :
-                        <Button variant="contained" sx={{
-                            color: 'white',
-                            backgroundColor: '#041846',
+                    <Button onMouseOver={(e) => e.target.style.backgroundColor = 'red'}
+                        sx={{
+                            mr: 3, pl: 3, pr: 3,
+                            color: "#FFFFFF",
                             textTransform: 'none',
-                            fontFamily: "Poppins"
-                        }} onClick={() => applyNow(selectedVisitor._id)}>Apply Now</Button>
+                            backgroundColor: 'red'
+                        }} onClick={() => setSelectedVisitor(null)}>Back</Button>
+                    {applied ? <Button variant="contained" sx={{
+                        mr: 3, pl: 3, pr: 3,
+                        color: "#FFFFFF",
+                        textTransform: 'none',
+                        backgroundColor: '#401E44'
+                    }} disabled>Applied</Button> :
+                        <Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} variant="contained"
+                            sx={{
+                                mr: 3, pl: 3, pr: 3,
+                                color: "#FFFFFF",
+                                textTransform: 'none',
+                                backgroundColor: '#401E44'
+                            }} onClick={() => applyNow(selectedVisitor._id)}>Apply Now</Button>
                     }
                 </Box>
             </Box>
