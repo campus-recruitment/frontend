@@ -67,7 +67,7 @@ export default function VisitorsForm() {
                         textTransform: 'none',
                         fontFamily: "Poppins"
                     }}>Back</Button></Link>
-                <Button variant="contained" onClick={submitForm} sx={{
+                <Button variant="contained" onMouseOver={(e) => e.target.style.backgroundColor = '#041846'} onClick={submitForm} sx={{
                     m: 2, pr: 4, pl: 4, color: 'white',
                     backgroundColor: '#041846',
                     textTransform: 'none',

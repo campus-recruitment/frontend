@@ -18,7 +18,7 @@ export default function AdminDashboard() {
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
                     <CardMedia height="194" component="img" image={analysis} />
                     <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link to="analysis"><Button sx={{
+                        <Link to="analysis"><Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                             mr: 3, pl: 3, pr: 3,
                             color: "#FFFFFF",
                             textTransform: 'none',
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
                     <CardMedia height="194" component="img" image={createnotice} />
                     <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link to="notice-form"><Button sx={{
+                        <Link to="notice-form"><Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                             mr: 3, pl: 3, pr: 3,
                             color: "#FFFFFF",
                             textTransform: 'none',
@@ -40,7 +40,7 @@ export default function AdminDashboard() {
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
                     <CardMedia height="194" component="img" image={createvisitor} />
                     <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link to="visitor-form"><Button sx={{
+                        <Link to="visitor-form"><Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                             mr: 3, pl: 3, pr: 3,
                             color: "#FFFFFF",
                             textTransform: 'none',
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
                     <CardMedia height="194" component="img" image={listofstudents} />
                     <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link to="students-list"><Button sx={{
+                        <Link to="students-list"><Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                             mr: 3, pl: 3, pr: 3,
                             color: "#FFFFFF",
                             textTransform: 'none',
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
                 <Card sx={{ width: 245 }} elevation={0} variant="outlined">
                     <CardMedia height="194" component="img" image={listofvisitors} />
                     <CardActions sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Link to="visitors-list"><Button sx={{
+                        <Link to="visitors-list"><Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                             mr: 3, pl: 3, pr: 3,
                             color: "#FFFFFF",
                             textTransform: 'none',

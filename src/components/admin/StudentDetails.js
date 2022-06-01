@@ -183,13 +183,13 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                             </Table>
                         </Paper>
                         <Box sx={{ display: 'flex', justifyContent: 'end', mt: 2 }}>
-                            <Button sx={{
+                            <Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                                 mr: 3, pl: 3, pr: 3,
                                 color: "#FFFFFF",
                                 textTransform: 'none',
                                 backgroundColor: '#401E44'
                             }} variant='contained' onClick={() => setSelectedStudent(null)}>Back</Button>
-                            <Button sx={{
+                            <Button  onMouseOver={(e) => e.target.style.backgroundColor = 'red'} sx={{
                                 mr: 3, pl: 3, pr: 3,
                                 color: "#FFFFFF",
                                 textTransform: 'none',
@@ -239,7 +239,7 @@ export default function StudentDetails({ selectedStudent, setSelectedStudent }) 
                                         textTransform: 'none',
                                         borderColor: '#401E44'
                                     }} variant="outlined" onClick={handleClose}>Cancel</Button>
-                                    <Button sx={{
+                                    <Button onMouseOver={(e) => e.target.style.backgroundColor = 'red'} sx={{
                                         mr: 3, pl: 3, pr: 3,
                                         color: "#FFFFFF",
                                         textTransform: 'none',

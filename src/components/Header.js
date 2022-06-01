@@ -14,7 +14,7 @@ export default function Header() {
         Cookies.remove("token")
         navigate("/login")
     }
-    
+
     return (
         <>
             <AppBar position="static" sx={{ background: 'white' }}>
@@ -23,7 +23,12 @@ export default function Header() {
                         <img src={logo} alt="logo" width="110px" />
                     </Box>
                     {/* <Avatar alt="Remy Sharp" src={avatar} /> */}
-                    <Button onClick={logout}>Logout</Button>
+                    <Button onMouseOver={(e) => e.target.style.backgroundColor = 'red'} sx={{
+                        pl: 3, pr: 3,
+                        color: "#FFFFFF",
+                        textTransform: 'none',
+                        backgroundColor: 'red'
+                    }} onClick={logout}>Logout</Button>
                 </Toolbar>
             </AppBar>
         </>

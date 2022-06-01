@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Box, Typography, Chip, Button } from '@mui/material';
+import { Box, Typography, Chip, Button, Tooltip } from '@mui/material';
 import { UserContext } from '../../contexts/userContext';
 import { BookmarkBorder, Bookmark } from '@mui/icons-material';
 import { format } from 'date-fns';
@@ -10,12 +10,17 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
     const [saved, setSaved] = useState(false);
 
     useEffect(() => {
-        console.log(JSON.stringify(selectedVisitor, null, 1))
-        if (selectedVisitor.studentsApplied.includes(user._id)) {
+        console.log(selectedVisitor.studentsApplied)
+        console.log(user._id)
+        console.log(JSON.stringify(selectedVisitor.studentsApplied).includes(user._id))
+        if (JSON.stringify(selectedVisitor.studentsApplied).includes(user._id)) {
             setApplied(true);
         }
         else setApplied(false);
-        if (selectedVisitor.studentsSaved.includes(user._id)) {
+    }, [])
+ 
+    useEffect(() => {
+        if (JSON.stringify(selectedVisitor.studentsSaved).includes(user._id)) {
             setSaved(true);
         }
         else setSaved(false);
@@ -226,12 +231,14 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                             textTransform: 'none',
                             backgroundColor: 'red'
                         }} onClick={() => setSelectedVisitor(null)}>Back</Button>
-                    {applied ? <Button variant="contained" sx={{
+                    {console.log(applied)}
+                    {applied ? <><Button variant="contained" sx={{
                         mr: 3, pl: 3, pr: 3,
-                        color: "#FFFFFF",
+                        // color: "#401E44",
                         textTransform: 'none',
-                        backgroundColor: '#401E44'
-                    }} disabled>Applied</Button> :
+                        cursor: 'default'
+                        // backgroundColor: '#FFFFFF'
+                    }} disabled>Applied</Button></> :
                         <Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} variant="contained"
                             sx={{
                                 mr: 3, pl: 3, pr: 3,

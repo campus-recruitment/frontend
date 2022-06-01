@@ -25,10 +25,7 @@ export default function CampusVisitors({ setNum }) {
     }, [])
 
     function dateFormat(date) {
-        // let newDate = date.split('T');
         return format(new Date(date), 'do LLL yyyy')
-        // return format(new Date(), "LL YYYY")
-        // return newDate[0];
     }
 
     const handleSearch = (event) => {
@@ -74,19 +71,8 @@ export default function CampusVisitors({ setNum }) {
                                                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                                         {vis.companyName}
                                                     </Typography>
-                                                    {/* <Typography variant="body2" color="text.secondary">
-                                                    <LocationOn sx={{ fontSize: '1.2em' }} />{vis.location}
-                                                </Typography> */}
                                                 </Box>
                                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    {/* <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                                        <PlayCircleOutline sx={{ fontSize: '1.2em', mr: 0.5 }} />Start Date
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: 14 }} gutterBottom>
-                                                        18/03/2022
-                                                    </Typography>
-                                                </Box> */}
                                                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                                                             <Money sx={{ fontSize: '1.2em', mr: 0.5 }} />Package
@@ -114,15 +100,6 @@ export default function CampusVisitors({ setNum }) {
                                                 </Box>
                                             </CardContent>
                                             <CardActions sx={{ display: 'flex', justifyContent: 'end', mt: -4 }}>
-                                                {/* {vis.fullTime ?
-                                                <Typography sx={{ fontSize: 14, ml: 1 }} color="text.secondary" gutterBottom>
-                                                    Full-time
-                                                </Typography>
-                                                :
-                                                <Typography sx={{ fontSize: 14, ml: 1 }} color="text.secondary" gutterBottom>
-                                                    Part-time
-                                                </Typography>
-                                            } */}
                                                 <Button size="small" sx={{
                                                     textTransform: 'none',
                                                     color: '#051846',
@@ -147,9 +124,24 @@ export default function CampusVisitors({ setNum }) {
                                     </Card>
                                 </Grid>
                             </Grid> :
-                            <Box sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Typography>No visitor's available !!</Typography>
-                        </Box>
+                            <Grid container>
+                                <Grid item lg={8} md={8} sm={12} xs={12} sx={{ height: '74vh', overflow: 'scroll', scrollbarColor: '#401E44 white' }}>
+                                    <Box sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <Typography>No visitor's available !!</Typography>
+                                    </Box>
+                                </Grid>
+                                <Grid item lg={4} md={4} sm={12} xs={12}>
+                                    <Card sx={{ m: 2 }}>
+                                        <Box sx={{ display: 'flex' }}>
+                                            <Typography sx={{ ml: 2, mt: 2 }}>Filter</Typography>
+                                            <FilterAlt sx={{ fontSize: '18px', mt: 2 }} />
+                                        </Box>
+                                        <CardContent>
+                                            <TextField label="Search by Position" value={search} onChange={(e) => setSearch(e.target.value)} size="small" />
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            </Grid>
                         }
                     </Box>
                 </>

@@ -11,6 +11,7 @@ import Applications from './Applications';
 import Saved from './Saved';
 import VisitorDetails from './VisitorDetails';
 import Notices from './Notices';
+import Result from './Result';
 
 export default function MainDashboard() {
     const [num, setNum] = useState(1);
@@ -20,7 +21,7 @@ export default function MainDashboard() {
         <>
             <Header />
             <ThemeHeader />
-            <Grid container maxWidth="lg" sx={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+            <Grid container maxWidth="lg" sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                 <Grid item lg={2.5} md={3} sm={3} xs={12}>
                     <DashboardProfile />
                     <Card elevation={0} variant="outlined" className='menu-card' sx={{
@@ -71,7 +72,7 @@ export default function MainDashboard() {
                             textTransform: 'none',
                             fontFamily: "Poppins",
                             fontWeight: 900
-                        }}>Placement Results</Button>
+                        }} onClick={() => setNum(5)}>Placement Results</Button>
                         <Button sx={{
                             mt: { md: 1.5, sm: 1.5 },
                             mb: 4,
@@ -80,7 +81,7 @@ export default function MainDashboard() {
                             textTransform: 'none',
                             fontFamily: "Poppins",
                             fontWeight: 900
-                        }} onClick={() => setNum(5)}>Forum</Button>
+                        }} onClick={() => setNum(6)}>Forum</Button>
                     </Card>
                 </Grid>
                 <Grid item lg={9.5} md={9} sm={9} xs={12}>
@@ -89,7 +90,8 @@ export default function MainDashboard() {
                             num == 2 ? <Applications /> :
                                 num == 3 ? <Saved /> :
                                     num == 4 ? <Notices /> :
-                                        <></>
+                                        num == 5 ? <Result /> :
+                                            <></>
                     }
                 </Grid>
             </Grid>

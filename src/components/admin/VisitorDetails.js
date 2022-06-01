@@ -206,13 +206,13 @@ export default function VisitorDetails({ selectedVisitor, setSelectedVisitor }) 
                             </Table>
                         </Paper>
                         <Box sx={{ display: 'flex', justifyContent: 'end', mt: 2 }}>
-                            <Button sx={{
+                            <Button onMouseOver={(e) => e.target.style.backgroundColor = '#401E44'} sx={{
                                 mr: 3, pl: 3, pr: 3,
                                 color: "#FFFFFF",
                                 textTransform: 'none',
                                 backgroundColor: '#401E44'
                             }} variant='contained' onClick={() => setSelectedVisitor(null)}>Back</Button>
-                            <Button sx={{
+                            <Button onMouseOver={(e) => e.target.style.backgroundColor = 'red'} sx={{
                                 mr: 3, pl: 3, pr: 3,
                                 color: "#FFFFFF",
                                 textTransform: 'none',
